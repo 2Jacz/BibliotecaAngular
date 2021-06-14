@@ -1,0 +1,27 @@
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" style="width: 275px;" [routerLink]="['/']">
+        <img src="assets/imagenes/Logo.png" width="50" height="50" alt="Biblioteca Otaca" loading="lazy" />Biblioteca
+        Otaca
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+        aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link" style="color: white;" [routerLink]="['/Inicio-Anime']">Inicio</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link" style="color: white;" [routerLink]="['/Animes']" [queryParams]="{'': 'lista'}">Animes</a>
+          </li>
+        </ul>
+        <form class="d-flex" (ngSubmit)="form.form.valid && buscar()" #form="ngForm">
+          <input class="form-control me-2" type="search" [(ngModel)]="busqueda" name="busqueda" placeholder="Buscar"
+            aria-label="Buscar" required autocomplete="off">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>

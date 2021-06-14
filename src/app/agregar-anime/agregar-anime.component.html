@@ -1,0 +1,5 @@
+<div class="container">
+  <app-formulario-anime [generos]="generos" (animeInfo)="agregarAnime($event)"></app-formulario-anime>
+  <br/>
+  <app-formulario-episodios (animeEps)="agregarEpisodios($event)" (listo)="valido($event)"></app-formulario-episodios>
+</div>

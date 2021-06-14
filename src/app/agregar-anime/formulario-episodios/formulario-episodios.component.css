@@ -1,0 +1,27 @@
+.delete-cap {
+  vertical-align: top;
+  margin-top: 12px;
+  margin-left: 3px;
+  background-color: red;
+  color: white;
+  height: 30px;
+  width: 30px;
+}
+
+.delete-cap:hover {
+  opacity: 0.5;
+}
+
+.add-cap {
+  background-color: blue;
+  color: white;
+  margin-right: 10px;
+}
+
+.add-cap:hover {
+  opacity: 0.5;
+}
+
+.delete-cap .mat-icon {
+  font-size: 16px;
+}

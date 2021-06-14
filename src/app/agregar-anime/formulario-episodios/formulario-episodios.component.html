@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <h1 class="Title">Aniadir episodios</h1>
+  <form [formGroup]="episodiosForm" (ngSubmit)="agregarEps(episodiosForm.value)" class="needs-validations"
+    autocomplete="off">
+    <!--Episodios-->
+    <div formArrayName="episodios">
+      <div *ngFor="let episodioForm of episodios().controls; let iep=index" [formGroupName]="iep">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <mat-label>Episodio</mat-label>
+            <br />
+            <mat-form-field appearance="fill">
+              <mat-label>Numero de episodio</mat-label>
+              <input matInput type="number" placeholder="numero de episodio" formControlName="numero_episodio"
+                id="numero_episodio" min="1" max="1250">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre del episodio</mat-label>
+              <input matInput type="text" placeholder="Nombre del episodio" formControlName="nombre_episodio"
+                id="nombre_episodio" minlength="0" maxlength="40">
+            </mat-form-field>
+            <button (click)="quitarEpisodio(iep)" mat-mini-fab aria-label="Quitar episodio" type="button"
+              class="delete-cap">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </div>
+          <!--Urls-->
+          <div class="col-sm-12 col-md-6 col-lg-6" formArrayName="urls">
+            <mat-label>Enlaces del episodio</mat-label>
+            <div *ngFor="let url of episodioUrls(iep).controls; let iurl = index;" [formGroupName]="iurl">
+              <mat-label>Enlace {{ iurl + 1 }}</mat-label>
+              <br />
+              <mat-form-field appearance="fill">
+                <mat-label>Servidor</mat-label>
+                <input matInput type="text" placeholder="Servidor en el que esta alojado"
+                  formControlName="nombre_servidor" id="nombre_servidor">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Link/Enlace</mat-label>
+                <input matInput type="url" placeholder="Url para vizsualizar el episodio" formControlName="url"
+                  id="url">
+              </mat-form-field>
+              <button *ngIf="episodioUrls(iep).controls.length > 1" (click)="quitarUrl(iep, iurl)" mat-mini-fab aria-label="Quitar enlace" type="button"
+                class="delete-cap">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+            <button (click)="agregarUrl(iep)" mat-button class="add-cap" type="button">
+              <mat-icon>add_circle</mat-icon>
+              Agregar enlace
+            </button>
+            <br />
+          </div>
+          <!--Fin Urls-->
+        </div>
+      </div>
+    </div>
+    <br />
+    <!--Fin Episodios-->
+    <button type="submit" class="btn btn-success"
+      [disabled]="!episodiosForm.valid">Actualizar los espisodios</button>
+  </form>
+  <br />
+  <button (click)="agregarEpisodio()" mat-button class="add-cap" type="button">
+    <mat-icon>add_circle</mat-icon>
+    Agregar episodio
+  </button>
+  <br />
+</div>

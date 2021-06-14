@@ -1,0 +1,22 @@
+<div class="container d-flex justify-content-between align-items-center">
+  <input id="collapsible2" class="toggle" [(ngModel)]="visible" type="checkbox">
+  <label for="collapsible2" class="lbl-toggle">ANIMES EN EMISION</label>
+  <i style="color: orange;" class="fas fa-play"></i>
+</div>
+<ng-template [ngIf]="cargando" [ngIfElse]="lista">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<ng-template #lista>
+  <div class="collapsible-content" [class]="{'collapsible-content-show':visible}">
+    <div class="content-inner">
+      <ul class="list-group">
+        <li *ngFor="let anime of animesEnEmision; trackBy: trackByAnimeNombre"
+          class="list-group-item list-group-item-action">
+          <i class="fas fa-play-circle text-info left"></i><a>{{ anime.nombre }} <span class="badge rounded-pill right"
+              [ngClass]="{'bg-anime': anime.tipo_animacion === 'Anime', 'bg-ova': anime.tipo_animacion === 'Ova','bg-pelicula': anime.tipo_animacion === 'Pelicula'}"
+              data-toggle="tooltip" data-placement="top" title="{{ anime.nombre }}">{{ anime.tipo_animacion }}</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

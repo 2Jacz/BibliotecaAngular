@@ -1,0 +1,9 @@
+mat-form-field{
+  width:100%;
+}
+
+mat-select {
+  height: auto;
+  max-height: 50px;
+  overflow-y: auto;
+}

@@ -1,0 +1,86 @@
+<i class="fas fa-star text-warning" style="font-size: 25px;"></i><label class="Title">Ultimos Animes agregados</label>
+<ng-template [ngIf]="cargando" [ngIfElse]="lista">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<ng-template #lista>
+  <ng-template [ngIf]="nuevosAnimes.length > 0" [ngIfElse]="sinAnimes">
+    <div class="lista">
+      <div class="list-container">
+        <div class="card" *ngFor="let anime of nuevosAnimes; trackBy: tackingByNuevoAnimeId">
+          <div class="ribbon"><span>Nuevo</span></div>
+          <img [src]="loadImage(anime.portada)" alt="{{ anime.nombre }}"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}">
+          <div class="info">
+            <h1 data-toggle="tooltip" data-placement="top" title="{{ anime.nombre }}">{{ anime.nombre }}</h1>
+            <span class="badge rounded-pill right" [ngClass]="{
+              'bg-anime': anime.tipo_animacion === 'Anime',
+              'bg-ova': anime.tipo_animacion === 'Ova',
+              'bg-pelicula': anime.tipo_animacion === 'Pelicula'
+            }">{{ anime.tipo_animacion }}</span>
+            <p>{{ anime.descripcion }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #sinAnimes>
+    <div class="lista">
+      <div class="list-container">
+        <div class="card">
+          <div class="ribbon"><span>Nuevo</span></div>
+          <img src="assets/imagenes/13256276_708846179218313_8178008124451136419_n.jpg" alt="Proximamente"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}">
+          <div class="info">
+            <h1>Proximamente!!</h1>
+            <p>Aun no hay hay por aqui pero pronto!!</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ribbon"><span>Nuevo</span></div>
+          <img src="assets/imagenes/13256276_708846179218313_8178008124451136419_n.jpg" alt="Proximamente"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}">
+          <div class="info">
+            <h1>Proximamente!!</h1>
+            <p>Aun no hay hay por aqui pero pronto!!</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ribbon"><span>Nuevo</span></div>
+          <img src="assets/imagenes/13256276_708846179218313_8178008124451136419_n.jpg" alt="Proximamente"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}">
+          <div class="info">
+            <h1>Proximamente!!</h1>
+            <p>Aun no hay hay por aqui pero pronto!!</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ribbon"><span>Nuevo</span></div>
+          <img src="assets/imagenes/13256276_708846179218313_8178008124451136419_n.jpg" alt="Proximamente"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}">
+          <div class="info">
+            <h1>Proximamente!!</h1>
+            <p>Aun no hay hay por aqui pero pronto!!</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ribbon"><span>Nuevo</span></div>
+          <img src="assets/imagenes/13256276_708846179218313_8178008124451136419_n.jpg" alt="Proximamente"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}">
+          <div class="info">
+            <h1>Proximamente!!</h1>
+            <p>Aun no hay hay por aqui pero pronto!!</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ribbon"><span>Nuevo</span></div>
+          <img src="assets/imagenes/13256276_708846179218313_8178008124451136419_n.jpg" alt="Proximamente"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}">
+          <div class="info">
+            <h1>Proximamente!!</h1>
+            <p>Aun no hay hay por aqui pero pronto!!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

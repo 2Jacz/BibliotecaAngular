@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <form (ngSubmit)="buscar()" class="d-flex flex-wrap align-content-start" [formGroup]="busquedaForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Generos</mat-label>
+      <mat-select formControlName="generosSeleccionados" multiple>
+        <mat-option *ngFor="let genero of generos" [value]="genero">{{ genero }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tiposSeleccionados" multiple>
+        <mat-option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha</mat-label>
+      <mat-select formControlName="fechasSeleccionadas" multiple>
+        <mat-option *ngFor="let fecha of fechas" [value]="fecha">{{fecha}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estadoSeleccionado" multiple>
+        <mat-option *ngFor="let estado of estados" [value]="estado">{{estado}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Orden</mat-label>
+      <mat-select formControlName="ordenSeleccionado">
+        <mat-option *ngFor="let orden of ordenamiento" [value]="orden">{{orden}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="example-button-container" style="margin-top: 10px">
+      <button mat-mini-fab aria-label="Mostrar Seleccionados" type="submit">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

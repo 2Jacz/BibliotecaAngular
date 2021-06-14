@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 offset-md-3">
+      <ng-template [ngIf]="paginador.paginaFinal > 1">
+        <ul class="pagination" [ngClass]="{'disabled': cargando}">
+          <ng-template [ngIf]="paginador.paginaActual > 1" [ngIfElse]="primeraPagina">
+            <li class="page-item">
+              <span class="page-link" (click)="navegar(paginador.paginaActual - 1)">&#60;</span>
+            </li>
+          </ng-template>
+          <ng-template #primeraPagina>
+            <li class="page-item">
+              <span class="page-link">&#60;</span>
+            </li>
+          </ng-template>
+          <ng-template [ngIf]="paginador.paginaActual > 6">
+            <li class="page-item">
+              <span class="page-link" (click)="navegar(1)">1</span>
+            </li>
+            <li class="page-item">
+              <span class="page-link" (click)="irAPagina()">...</span>
+            </li>
+          </ng-template>
+          <ng-template ngFor let-numPagina [ngForOf]="paginasANavegar" [ngForTrackBy]="trackByNumPag">
+            <li [ngClass]="{'active': numPagina === paginador.paginaActual }" class="page-item">
+              <span class="page-link" (click)="navegar(numPagina)">{{ numPagina }}</span>
+            </li>
+          </ng-template>
+          <ng-template [ngIf]="paginador.paginaActual <= paginador.paginasTotales">
+            <ng-template [ngIf]="paginador.paginaActual < paginador.bordeFinal">
+              <li class="page-item">
+                <span class="page-link" (click)="irAPagina()">...</span>
+              </li>
+            </ng-template>
+            <ng-template [ngIf]="" [ngIfElse]="ultimaPagina">
+              <li class="page-item active">
+                <span class="page-link" (click)="navegar(paginador.paginasTotales)">{{ paginador.paginasTotales }}</span>
+              </li>
+              <li class="page-item">
+                <span class="page-link">&#62;</span>
+              </li>
+            </ng-template>
+            <ng-template #ultimaPagina>
+              <li class="page-item">
+                <span class="page-link" (click)="navegar(paginador.paginasTotales)">{{ paginador.paginasTotales }}</span>
+              </li>
+              <li class="page-item">
+                <span class="page-link" (click)="navegar(paginador.paginaActual + 1)">&#62;</span>
+              </li>
+            </ng-template>
+          </ng-template>
+        </ul>
+      </ng-template>
+    </div>
+  </div>
+</div>

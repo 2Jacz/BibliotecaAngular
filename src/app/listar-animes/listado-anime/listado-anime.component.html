@@ -1,0 +1,35 @@
+  <ng-template [ngIf]="cargando" [ngIfElse]="cargado">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </ng-template>
+  <ng-template #cargado>
+    <ng-template [ngIf]="animes.length > 0" [ngIfElse]="sinAnimes">
+      <div class="container">
+        <div class="lista">
+          <div class="list-container">
+            <div class="card" *ngFor="let anime of animes; trackBy: tackingByNuevoAnimeId">
+              <img [src]="loadImage(anime.portada)" alt="{{ anime.nombre }}"
+                class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}">
+              <div class="info">
+                <h1 data-toggle="tooltip" data-placement="top" title="{{ anime.nombre }}">{{ anime.nombre }}</h1>
+                <span class="badge rounded-pill right" [ngClass]="{
+                  'bg-anime': anime.tipo_animacion === 'Anime',
+                  'bg-ova': anime.tipo_animacion === 'Ova',
+                  'bg-pelicula': anime.tipo_animacion === 'Pelicula'
+                }">{{ anime.tipo_animacion }}</span>
+                <p>{{ anime.descripcion }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  
+    <ng-template #sinAnimes>
+      <div class="container-fluid text-center">
+        <img src="assets/imagenes/404.png" alt="Not found" class="img-fluid">
+      </div>
+      <div class="container-fluid text-center">
+        <mat-label>No hay animes con esta descripcion :(</mat-label>
+      </div>
+    </ng-template>
+  </ng-template>

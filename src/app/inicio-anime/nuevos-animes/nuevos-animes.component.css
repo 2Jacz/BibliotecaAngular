@@ -1,0 +1,51 @@
+.ribbon {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px;
+  height: 75px;
+  text-align: right;
+}
+.ribbon span {
+  font-size: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  line-height: 20px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg); /* Needed for Safari */
+  width: 100px;
+  display: block;
+  background: green;
+  position: absolute;
+  top: 19px;
+  right: -21px;
+}
+
+.ribbon span::before,
+.ribbon span::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: -1;
+}
+
+.bg-anime {
+  background-color: skyblue;
+  color: black;
+}
+.bg-ova {
+  background-color: lemonchiffon;
+  color: black;
+}
+.bg-pelicula {
+  background-color: purple;
+  color: white;
+}
+.badge {
+  width: 100px;
+}

@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <app-animes-en-emision [cargando]="cargando" [animesEnEmision]="info.animes_emision"></app-animes-en-emision>
+    </div>
+    <div class="col-md-9">
+      <main>
+        <app-nuevos-episodios [cargando]="cargando" [nuevosEpisodios]="info.ultimos_12_episodios"></app-nuevos-episodios>
+        <app-nuevos-animes [cargando]="cargando" [nuevosAnimes]="info.ultimos_16_animes"></app-nuevos-animes>
+      </main>
+    </div>
+  </div>
+</div>
+<mat-label>{{ mensaje }}</mat-label>

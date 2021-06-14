@@ -1,0 +1,85 @@
+<h3 class="Title">Agregar anime</h3>
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-6">
+    <form [formGroup]="animeForm" (ngSubmit)="agregarAnime(animeForm.value)" class="needs-validations"
+      autocomplete="off">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" placeholder="Anime" formControlName="nombre" id="nombre" minlength="2"
+          maxlength="40">
+        <mat-hint align="end">De 2 a 40 letras.</mat-hint>
+        <mat-error *ngIf="hasError('nombre', 'required')">Nesecita tener un nombre</mat-error>
+        <mat-error *ngIf="hasError('nombre', 'minlength')">Nesecita tener al menos 2 letras</mat-error>
+        <mat-error *ngIf="hasError('nombre', 'maxlength')">Maximo de 40 letras</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput placeholder="Descripcion" formControlName="descripcion" id="descripcion"
+          minlength="15" maxlength="500" style="max-height: 8em;"></textarea>
+        <mat-hint align="end">De 15 a 500 letras.</mat-hint>
+        <mat-error *ngIf="hasError('descripcion', 'required')">Nesecita tener una descripcion</mat-error>
+        <mat-error *ngIf="hasError('descripcion', 'minlength')">Nesecita tener al menos 15 letras</mat-error>
+        <mat-error *ngIf="hasError('descripcion', 'maxlength')">Maximo de 500 letras</mat-error>
+      </mat-form-field>
+      <div class="form-group">
+        <button type="button" mat-raised-button (click)="fileInput.click()">Portada</button>
+        <input hidden (change)="visualizarPortada($event)" #fileInput type="file" accept="image/*">
+        <mat-error *ngIf="animeForm.controls['portada'].touched && hasError('portada', 'required')">Agregue una imagen de portada</mat-error>
+        <mat-error *ngIf="hasError('portada', 'imageDimentionsValidator')">El ancho de la imagen no debe se 100px mayor al largo</mat-error>
+        <mat-error *ngIf="hasError('portada', 'imageSizeValidator')">La imagen no debe de pesar mas de 6mb</mat-error>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Numero de episodios</mat-label>
+        <input matInput type="number" placeholder="numero de capitulos" formControlName="numero_episodios" id="numero_episodios" min="1" max="1250">
+        <mat-hint align="end">Numero de episodios totales, si no se sabe cuantos son, poner un numero del 1 al 24.</mat-hint>
+        <mat-error *ngIf="hasError('numero_episodios', 'required')">Nesecita tener al menos un episodios</mat-error>
+        <mat-error *ngIf="hasError('numero_episodios', 'min')">Nesecita tener al menos 1 episodio</mat-error>
+        <mat-error *ngIf="hasError('numero_episodios', 'max')">Maximo de 1250 episodios</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de publicacion:</mat-label>
+        <input matInput [matDatepicker]="picker" [min]="fechaMinima" [max]="fechaMaxima" placeholder="fecha de publicacion del anime. ej: 1870-oct-20"
+          formControlName="fecha_publicacion" id="fecha_publicacion" readonly (click)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="hasError('fecha_publicacion', 'required')">Seleccione la fecha en que fue publicado este anime, o por lo menos una fecha valida</mat-error>
+        <mat-error *ngIf="hasError('fecha_publicacion', 'invalid')">La fecha no puede ser superior al dia de hoy</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Generos</mat-label>
+        <mat-select formControlName="generos" multiple>
+          <mat-option *ngFor="let genero of generos" [value]="genero">{{ genero }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('generos', 'required')">Nesecita tener al menos un genero</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo_animacion">
+          <mat-option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('tipo_animacion', 'required')">Nesecita tener un tipo</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado">
+          <mat-option *ngFor="let estado of estados" [value]="estado">{{ estado }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('estado', 'required')">Nesecita tener un estado</mat-error>
+      </mat-form-field>
+      <br/>
+      <button mat-raised-button color="primary">Agregar</button>
+    </form>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="container">
+      <h4>Portada</h4>
+      <ng-template [ngIf]="cargandoImagen" [ngIfElse]="cargado">
+        <mat-spinner mode="indeterminate"></mat-spinner>
+      </ng-template>
+      <ng-template #cargado>
+        <img [src]="srcResult" class="img-fluid">
+      </ng-template>
+    </div>
+  </div>
+</div>

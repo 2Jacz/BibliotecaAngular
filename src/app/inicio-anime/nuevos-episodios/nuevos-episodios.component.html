@@ -1,0 +1,35 @@
+<i class="fas fa-newspaper" style="color: orange; font-size: 25px;"></i><label class="Title">Ultimos episodios
+  agregados</label>
+<ng-template [ngIf]="cargando" [ngIfElse]="lista">
+  <mat-progress-bar mode='indeterminate'></mat-progress-bar>
+</ng-template>
+<ng-template #lista>
+  <div class="lista">
+    <div class="list-container">
+      <ng-template [ngIf]="nuevosEpisodios.length > 0" [ngIfElse]="sinCaps">
+        <div *ngFor="let episodio of nuevosEpisodios; trackBy: trackingByEpisodioId" class="video-item">
+          <img [src]="loadImage(episodio.anime_Portada)"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+            alt="{{ episodio.nombre_Anime }}">
+          <span class="sombra"></span>
+          <span class="ep">Episodio {{ episodio.numero_Episodio }}</span>
+          <p class="nombre" data-toggle="tooltip" data-placement="top"
+            title="{{ episodio.nombre_Anime }} Episodio {{ episodio.numero_Episodio }}">{{ episodio.nombre_Anime }}</p>
+          <i class="icon fas fa-play-circle"></i>
+        </div>
+      </ng-template>
+      <ng-template #sinCaps>
+        <div class="video-item">
+          <img src="assets/imagenes/11403307_1441372766168975_5189457760357341880_n.jpg"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+            alt="Proximamente">
+          <span class="sombra"></span>
+          <span class="ep">Episodio 0</span>
+          <p class="nombre" data-toggle="tooltip" data-placement="top" title="Proximamente!!!">
+            Proximamente!!!</p>
+          <i class="icon fas fa-play-circle"></i>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ng-template>

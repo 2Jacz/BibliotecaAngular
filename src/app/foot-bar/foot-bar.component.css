@@ -1,0 +1,30 @@
+.footer-1 {
+  background-color: black;
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: auto;
+  bottom: 0px;
+  width: 100%;
+}
+
+.bg-f-icon {
+  color: blue;
+  font-size: 20px;
+  bottom: 0px;
+}
+.bg-y-icon {
+  color: red;
+  font-size: 20px;
+  bottom: 0px;
+}
+.bg-e-icon {
+  color: gray;
+  font-size: 20px;
+  bottom: 0px;
+}
+.bg-r-icon {
+  color: blue;
+  font-size: 20px;
+  bottom: 0px;
+}

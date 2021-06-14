@@ -1,0 +1,3 @@
+<app-filtros-anime [generos]="generos" [buscado]="porNombre" (form)="filtrar($event)"></app-filtros-anime>
+<app-listado-anime [cargando]="cargando" [animes]="animes"></app-listado-anime>
+<app-paginado-anime [cargando]="cargando" [paginador]="paginador" (paginaSeleccionada)="buscarPagina($event)"></app-paginado-anime>
